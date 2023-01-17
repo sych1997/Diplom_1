@@ -14,17 +14,17 @@ import static org.junit.Assert.assertEquals;
 @RunWith(MockitoJUnitRunner.class)
 public class BurgerTest {
     Burger burger;
-
-    @Before
-    public void createBurger() {
-        burger = new Burger();
-    }
     @Mock
     Bun bun;
     @Mock
     Ingredient ingredient;
     @Mock
     Ingredient ingredient1;
+
+    @Before
+    public void createBurger() {
+        burger = new Burger();
+    }
 
     @Test
     public void setBuns() {
@@ -33,21 +33,24 @@ public class BurgerTest {
         Bun actual = burger.bun;
         assertEquals(expected, actual);
     }
+
     @Test
     public void addIngredient() {
         burger.addIngredient(ingredient);
         boolean expected = true;
         boolean actual = burger.ingredients.size() != 0;
-        assertEquals("Ингредиент не добавился",expected, actual);
+        assertEquals("Ингредиент не добавился", expected, actual);
     }
+
     @Test
     public void removeIngredient() {
         burger.addIngredient(ingredient);
         burger.removeIngredient(0);
         boolean expected = true;
         boolean actual = burger.ingredients.size() == 0;
-        assertEquals("Ингредиент не удалился",expected, actual);
+        assertEquals("Ингредиент не удалился", expected, actual);
     }
+
     @Test
     public void moveIngredient() {
         List<Ingredient> expected = List.of(ingredient1, ingredient);
@@ -55,8 +58,9 @@ public class BurgerTest {
         burger.addIngredient(ingredient1);
         burger.moveIngredient(1, 0);
         List<Ingredient> actual = burger.ingredients;
-        assertEquals("Ингредиенты не поменялись местами",expected, actual);
+        assertEquals("Ингредиенты не поменялись местами", expected, actual);
     }
+
     @Test
     public void getPrice() {
         Mockito.when(bun.getPrice()).thenReturn(35.00f);
@@ -65,8 +69,9 @@ public class BurgerTest {
         burger.addIngredient(ingredient);
         float expected = 190.00f;
         float actual = burger.getPrice();
-        assertEquals("Не правильно рассчиталась цена бургера",expected, actual, 0.001f);
+        assertEquals("Не правильно рассчиталась цена бургера", expected, actual, 0.001f);
     }
+
     @Test
     public void getReceipt() {
         String expected = String.format("(==== Black bun ====)%n" +
@@ -81,6 +86,6 @@ public class BurgerTest {
         burger.setBuns(bun);
         burger.addIngredient(ingredient);
         String actual = burger.getReceipt();
-        assertEquals("Не правильный состав или цена бургера",expected, actual);
+        assertEquals("Не правильный состав или цена бургера", expected, actual);
     }
 }

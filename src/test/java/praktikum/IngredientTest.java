@@ -27,25 +27,28 @@ public class IngredientTest {
                 {FILLING, "beef patty", 120.00f},
         };
     }
+
     @Test
     public void getName() {
         Ingredient ingredient = new Ingredient(ingredientType, name, price);
         String expected = name;
         String actual = ingredient.getName();
-        assertEquals("Не правильное название ингредиента",expected, actual);
+        assertEquals("Не правильное название ингредиента", expected, actual);
     }
+
     @Test
     public void getPrice() {
         Ingredient ingredient = new Ingredient(ingredientType, name, price);
         float expected = price;
         float actual = ingredient.getPrice();
-        assertEquals("Не правильная цена ингредиента",expected, actual, 0.001f);
+        assertEquals("Не правильная цена ингредиента", expected, actual, 0.001f);
     }
+
     @Test
     public void getType() {
         Ingredient ingredient = new Ingredient(ingredientType, name, price);
         IngredientType expected = ingredientType;
         IngredientType actual = ingredient.getType();
-        assertEquals("Не правильный тип ингредиента",expected, actual);
+        assertEquals("Не правильный тип ингредиента", expected, actual);
     }
 }
